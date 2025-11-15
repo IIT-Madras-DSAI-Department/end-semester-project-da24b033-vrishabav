@@ -167,15 +167,17 @@ The `VotingClassifier` ensemble, which averages the probabilities of these three
 
 ## 4. Summary of Thoughts & Observations
 
-This project made it interesting to combine different things we've learned through classes and the other assignments, and ultimately apply it to a real world problem (albeit one that has been solved many times over the years). A few of the observations and ideas that came to me through this process include:
+This project made it interesting to combine different things we've learned through classes and the other assignments, and ultimately apply it to a real world problem (albeit one that has been solved many times over the years). A few of the observations and ideas throughout this process include:
 
 * **Model Evolution is Important:** The initial "kitchen sink" approach, which included `RandomForest` and `AdaBoost`, was slow and ineffective (and also  less accurate). `RandomForest` took 133 seconds for a 0.90 F1, while `AdaBoost` took 30 seconds for a disastrous 0.78 F1. Removing these and replacing them with a single, highly-optimized `XGBoost` model (which achieved a 0.9455 F1 in tuning) was an important decision
 
 * **Diversity in Ensembles:** The final ensemble is strong because it combines three fundamentally different approaches:
-    1.  **KNN:** Local neighborhood similarity.
+    1.  **KNN:** Local neighborhood similarity
     2.  **PCA Anomaly (unsupervised, based on reconstructions):** Class-wise feature correlation
     3.  **XGBoost (Gradient-based and decision tree framework):** Strong, boosted decision boundary
 
-This diversity makes the ensemble robust, as the models are likely to make different types of errors, which can be corrected by the vote
+This diversity makes the ensemble robust, as the models are likely to make different types of errors, which can be corrected by the vote. This makes the ensemble greater than the sum of its parts, and a very effective classification model achieving ~97% accuracy
 
 * **Bottlenecks:** KNN's prediction time and Random Forest's training time were the two biggest performance hurdles. The solutions (PCA for KNN, and replacing RF with XGB) were critical to making the model execute in a reasonable amount of time (well within the 5-minute time limit). Throughout the different iterations, KNN and PCA Anomaly were always the top performers, justifying their inclusion in the final ensemble
+
+* Overall, the implementations in this course helped me connect the "theory" of ML to the practical implementations, the problems that arise, the common fixes, the different approaches and the inside working of a library like sklearn
