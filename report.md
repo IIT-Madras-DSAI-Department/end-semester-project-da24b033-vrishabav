@@ -98,7 +98,7 @@ Best parameters were **`n_estimators = 40`**, **`max_depth = 5`**, and **`learni
 
 ### Optimizations
 
-1.  **Dimensionality Reduction with PCA:** The K-Nearest Neighbors algorithm's prediction time is heavily dependent on the number of features. Running it on all 784 features is computationally infeasible. By using PCA to reduce the data to **30 components**, the prediction time is dramatically reduced (to around **5.28 seconds**). When testing the full data for both train and test on KNN, *without* implementing PCA (training with all 784 features) the weighted F1 was gotten to be 0.9477 which is even worse than what we got with `PCA30+KNN`; while taking more than 100x the testing time
+1.  **Dimensionality Reduction with PCA:** The K-Nearest Neighbors algorithm's prediction time is heavily dependent on the number of features. Running it on all 784 features is computationally infeasible. By using PCA to reduce the data to **30 components**, the prediction time is dramatically reduced (to around **5.28 seconds**). When checking the full data for both train and val on KNN, *without* implementing PCA (training with all 784 features) the weighted F1 for val was gotten to be 0.9477 which is even worse than what we got with `PCA30+KNN`; while taking more than 100x the testing time
 
 2.  **Model Selection & Evolution:** Initial trials explored a wider range of models, including `RandomForestClassifier` and `AdaBoostSAMMEClassifier`.
     * `RandomForest` proved to be extremely slow, with one trial taking **133.42 seconds** to train, with no significantly good accuracy either
