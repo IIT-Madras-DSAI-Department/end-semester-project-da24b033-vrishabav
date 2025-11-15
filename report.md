@@ -180,4 +180,12 @@ This diversity makes the ensemble robust, as the models are likely to make diffe
 
 * **Bottlenecks:** KNN's prediction time and Random Forest's training time were the two biggest performance hurdles. The solutions (PCA for KNN, and replacing RF with XGB) were critical to making the model execute in a reasonable amount of time (well within the 5-minute time limit). Throughout the different iterations, KNN and PCA Anomaly were always the top performers, justifying their inclusion in the final ensemble
 
+* **Bias-Variance Analysis:** Using a relatively low `k=3` for the KNN makes this theoretically a high-variance, low-bias model. However, no significant change in performance was seen for various greater values of k. To keep the time complexity lower, and since the variance was anyway being managed by the ensemble, `k=3` was kept. XGBoost is a low-bias, high-variance model by nature; while PCA Anomaly is high-bias, low-variance (it assumes each digit is best represented by its own class' 50-dimensional subspace). Therefore the effects tend to cancel out and reduce the overall variance when the ensemble is applied and probabilities are averaged
+
+* **Common Model Confusions:** An examination of the final ensemble's confusion matrix reveals specific, challenging digit pairs, which points to the intrinsic ambiguity of the dataset, and the challenges that come with digit classification
+    * The most common error was confusing a 9 for a 7, featuring in six instances
+    * Symmetrical confusion was also relatively common; 4s were confused with 9s four times, and 9s were confused with 4s five times. Intuitively this makes sense as a "closed" 4 is very similar to a 9
+    * Another symmetric pair was 3 and 5. The model misclassified three 3s as 5s, and three 5s as 3s
+    * The digit 8 was also difficult, with its 232 correct predictions offset by errors across several other classes. This shows that its loops can be misread in many different ways. These error patterns do not just reflect a flaw in the models' robustness, but also the inherent uncertainty in differentiating between some of these shapes
+
 * Overall, the implementations in this course helped me connect the "theory" of ML to the practical implementations, the problems that arise, the common fixes, the different approaches and the inside working of a library like sklearn
