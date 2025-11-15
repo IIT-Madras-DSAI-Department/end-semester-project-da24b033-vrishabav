@@ -111,7 +111,7 @@ Best parameters were **`n_estimators = 40`**, **`max_depth = 5`**, and **`learni
 
 ### Evaluation Results
 
-The final models were trained on the full `MNIST_train.csv` dataset (10,002 samples) and evaluated on the `MNIST_validation.csv` dataset (2499 samples). The total training and evaluation runtime was **254.64 seconds**, which is successfully within the 5-minute (300s) requirement.
+The final models were trained on the full `MNIST_train.csv` dataset (10,002 samples) and evaluated on the `MNIST_validation.csv` dataset (2499 samples). The total training and evaluation runtime was **254.64 seconds**, which is successfully within the 5-minute requirement
 
 **Final Model Performance (on Full Training Set)**
 | Model | Weighted F1 | Train Time (s) | Predict Time (s) |
@@ -119,12 +119,11 @@ The final models were trained on the full `MNIST_train.csv` dataset (10,002 samp
 | **XGB** | 0.9676 | 243.19 | 2.08 |
 | **KNN** | 0.9559 | 0.00 | 2.97 |
 | **PCA_Anomaly** | 0.9383 | 1.05 | 0.16 |
-*Source:*
 
-The `XGBoost` model emerged as the single best-performing model, outperforming its tuning F1 score (0.9455). `KNN` remained a strong and exceptionally fast (0.00s train time) model. `PCA_Anomaly` was the fastest to predict (0.16s).
+The `XGBoost` model emerged as the single best-performing model, outperforming its tuning F1 score (0.9455). `KNN` remained a strong and exceptionally fast (0.00s train time) model. `PCA_Anomaly` was the fastest to predict (0.16s)
 
 **Final Ensemble Performance**
-The `VotingClassifier` ensemble, which averages the probabilities of these three models, achieved the highest performance:
+The `VotingClassifier` ensemble, which averages the probabilities of these three models, achieved the highest performanc:
 
 * **Ensemble Weighted F1 Score:** **0.9691**
 * **Ensemble Prediction Time:** 4.98s
