@@ -1,54 +1,67 @@
-# IIT-Madras-DA2401-Machine-Learning-Lab-End-Semester-Project
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/R05VM8Rg)
+# IIT-Madras DA2401 Machine Learning Lab: End Semester Project
 
-## 📌 Purpose of this Template
-
-This repository is the **starter** for your End Semester Project submission in GitHub Classroom. You can implement your solution and push your work in this repository. Please free to edit this README.md file as per your requirements.
-
-> **Scope (as per assignment brief):**
-> Give an introduction to your repository here: Eg. This repository contains a complete implementation for ...
+# MNIST Digit Classification (0-9)
 
 ---
 
-**Important Note:** 
-1. TAs will evaluate using the `.py` file only.
-2. All your reports, plots, visualizations, etc pertaining to your solution should be uploaded to this GitHub repository
+## 📌 Scope (as per assignment brief)
+
+This repository contains the codebase for my submission for the DA2401 End Semester Project, building a multi-class classification system to identify digits 0-9 from the MNIST dataset
+
+The final system implemented in `main.py` is a **Voting Ensemble** that combines three distinct models:
+1.  **K-Nearest Neighbors** (running on PCA-reduced data)
+2.  **PCA Reconstruction Classifier** (anomaly-detection-based approach)
+3.  **XGBoost Classifier** (One-vs-Rest configuration)
 
 ---
 
 ## 📁 Repository Structure
 
-* Describe your repository structure here. Explain about overall code organization.
+```
+.
+
+├── .github/                                    # Configuration
+
+├── README.md                                   # Overview and running guidelines
+
+├── report.md                                   # Full report with tabulations, summaries and thoughts
+
+├── algorithms.py                               # Algorithm implementations for PCA, KNN, XGBoost, etc
+
+├── hyperparam_tuning.py                        # Script used to tune hyperparameters for all the final models used (based on a subset of the data)
+
+├── main.py                                     # Main script to train all models, build the ensemble, and evaluate
+
+├── MNIST_train.csv                             # MNIST Training Dataset
+
+└── MNIST_validation.csv                        # MNIST Validation Dataset
+```
 
 ---
 
 ## 📦 Installation & Dependencies
 
-* Mention all the related instructions for installation of related packages for running your code here.
+* `numpy`
+* `sklearn.metrics` (Specifically `f1_score`, `classification_report`, and `confusion_matrix`) for evaluation
 
 ---
 
 ## ▶️ Running the Code
 
-All experiments should be runnable from the command line **and** reproducible in the notebook.
+### Command-line
 
-### A. Command-line (recommended for grading)
+1.  Ensure all `.py` files and the two `.csv` data files (`MNIST_train.csv`, `MNIST_validation.csv`) are in the same directory.
+2.  Execute the `main.py` script to run the full training and evaluation pipeline:
+    ```sh
+    python main.py
+    ```
+3.  The script will load the data, train all three models, and print the performance (F1, train time, test time) of each individual model. Finally, it will print the F1 score, Classification Report, and Confusion Matrix for the final ensemble on the `MNIST_validation.csv` dataset. If testing is to be done on `MNIST_test.csv`, please change line 7 of `main.py`
 
-* Mention the instructions to run you .py files.
-  
+If required, the `hyperparam_tuning.py` script can be run separately to reproduce the tuning results. It trains on a 20% subset of the data for speed
+
 ---
 
-## You can further add your own sections/titles along with corresponding contents here:
+## 🧾 Author
 
----
-
-## 🧾 Authors
-
-**<Name, Roll No.>**, IIT Madras (2025–26)
-
-
-## Best Practices:
-* Keep commits with meaningful messages.
-* Please do not write all code on your local machine and push everything to GitHub on the last day. The commits in GitHub should reflect how the code has evolved during the course of the assignment.
-* Collaborations and discussions with other students is strictly prohibited.
-* Code should be modularized and well-commented.
-
+Vrishab Anurag Venkataraghavan, DA24B033
